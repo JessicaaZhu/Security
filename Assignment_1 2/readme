@@ -1,0 +1,18 @@
+--------------------------------readme-------------------------------
+1.Group member:
+               NAME         E-MAIL ADDRESS
+STUDENT1     Yuejing Zhu    yzhu103@binghamton.edu
+STUDENT2     Sijie Meng     smeng4@binghamton.edu
+
+2.We have tested on bingsuns.
+
+3.How to execute our program:
+===PART-1===
+(1)input "make" command to makefile
+(2)input "./telnetserv”
+(3)open another terminal and input "./telnetcli bingsuns.binghamton.edu
+(3)use commands "ls","mkdir","rmdir","cd","cd ..","pwd","exit" to test the program
+===PART-2===
+(1)input "make" command to makefile
+(2)./mono input.txt output.txt seed(you can enter any number) mode(1(EN)/0(DE))
+---------------------------------------------------------------------
