@@ -1,0 +1,81 @@
+--------------------------------readme-------------------------------
+1.Group member:
+               NAME         E-MAIL ADDRESS
+STUDENT1     Sijie Meng     smeng4@binghamton.edu
+STUDENT2     Yuejing Zhu    yzhu103@binghamton.edu
+
+2.The programming language we use: Java.
+
+3.Platform: Linux.
+
+4.How to execute our program:
+(1) How to execute this project directly:
+	Server:
+	1>Open a new terminal window
+	2>cd server folder
+	3>complie: javac *.java
+	4>run: java Vf 7194
+(2) How to run in IDE:
+	1>open terminal window
+	2>make
+	3>other terminal window: cd server folder, input java Vf 7194
+	4>other terminal window: cd client folder, input java VC 127.0.0.1 7194
+
+5.Core code for encryption/decrption:
+(1) encryption:
+SealedObject EncryptKeys(Key keyPub, String mesg) {
+        try {
+            Cipher gencipher = Cipher.getInstance("RSA");
+            gencipher.init(Cipher.ENCRYPT_MODE, keyPub);
+            return new SealedObject(mesg, gencipher);
+        } catch (InvalidKeyException ex) {
+            handleException(ex, "Invalid key!");
+        } catch (IllegalBlockSizeException ex) {
+            handleException(ex, "Illegal Block Size!");
+        } catch (IOException ex) {
+            handleException(ex, "Here is an I/O error!");
+        }catch (NoSuchAlgorithmException ex) {
+            handleException(ex, "No such algorithm!");
+        }catch (NoSuchPaddingException ex) {
+            handleException(ex, "No such padding!");
+        }
+        return null;
+    }
+(2) decryption:
+Object DecryptKey(Key Ser_Key, SealedObject encrypt_key) {
+        try {
+            Cipher cipher = Cipher.getInstance("RSA");
+            cipher.init(Cipher.DECRYPT_MODE, Ser_Key);
+            return encrypt_key.getObject(cipher);
+        } catch (InvalidKeyException ex) {
+            handleException(ex, "Here is an error with cipher key!");
+        } catch (IllegalBlockSizeException ex) {
+            handleException(ex, "Illegal block size!");
+        } catch (IOException ex) {
+            handleException(ex, "Here is an I/O error!");
+        } catch (ClassNotFoundException ex) {
+            handleException(ex, "Class not found!");
+        } catch (BadPaddingException ex) {
+            handleException(ex, "Bad padding!");
+        }catch (NoSuchPaddingException ex) {
+            handleException(ex, "No such padding!");
+        } catch (NoSuchAlgorithmException ex) {
+            handleException(ex, "No such algorithm!");
+        }
+        return null;
+    }
+
+6.Core code for implementing the concurrent server:
+public ServerThread(Socket serSoc)  {
+         //try {
+          //Socket serSoc = null;  
+             this.socket = serSoc; 
+             this.util = new ServerUtil();
+                this.serverKeys = this.util.serKeyReceive();
+             //this.keys = this.util.genKeyPair();
+             this.voters = this.util.voterPart();
+             this.result = this.util.showWinner();
+        
+     }
+--------------------------------------------------------------------
+
